@@ -1,4 +1,4 @@
-fhand = open ('LV1\SMSSpamCollection.txt')
+fhand = open ('SMSSpamCollection.txt')
 ham_count = 0
 ham_words = 0
 spam_count = 0
