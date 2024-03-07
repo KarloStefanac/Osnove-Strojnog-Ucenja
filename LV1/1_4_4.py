@@ -1,4 +1,4 @@
-fhand = open("LV1\\song.txt")
+fhand = open("song.txt")
 wordcounts = {}
 for line in fhand :
     line = line.rstrip()
