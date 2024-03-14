@@ -3,26 +3,32 @@ import matplotlib.pyplot as plt
 
 #a)
 img = plt.imread("road.jpg")
-img = img[:,:,0].copy ()
+img = img[:,:,0].copy()
 print(img.shape)
 print(img.dtype)
 plt.figure()
-plt.imshow(img,cmap="gray")
-plt.show()
+plt.imshow(img, cmap="gray")
+plt.imshow(img, alpha=0.5,cmap="gray")
+# plt.show()
 
 #b)
 height, width = img.shape
-print(width*(3/4))
 plt.figure()
-plt.imshow(img[:, int(width*(3/4)):], cmap="gray")
-plt.show()
+plt.imshow(img[:, int(width*(1/4)):int(width*(1/2))], cmap="gray")
+# plt.show()
 
 #c)
-black = np.zeros((50,50))
-white = np.ones((50,50))
-blackwhite = np.hstack((black,white))
-whiteblack = np.hstack((white,black))
-result = np.vstack((blackwhite,whiteblack))
+rotated = np.ones((width,width))
+for i in range(height):
+    for j in range(width):
+        rotated[j][width-i-1] = img[i][j]
+rotated = rotated[:, width-height:]
 plt.figure()
-plt.imshow(result, cmap="gray")
+plt.imshow(rotated,cmap="gray")
+# plt.show()
+
+#d)
+mirrored = np.fliplr(img)
+plt.figure()
+plt.imshow(mirrored,cmap="gray")
 plt.show()
