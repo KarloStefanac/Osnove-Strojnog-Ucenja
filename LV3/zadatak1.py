@@ -1,0 +1,20 @@
+import pandas as pd
+data = pd.read_csv('data_C02_emission.csv')
+
+#a)
+print(len(data))
+print(data.info())
+print(f'Broj izostalih vrijednosti: {data.isnull().sum().sum()}')
+print(f'Broj duplikata: {data.duplicated().sum()}')
+data.drop_duplicates()
+data.dropna(axis=1)
+data.dropna(axis=0)
+#Pretvaranje u category
+data = data.apply(lambda x: x.astype('category') if x.dtype == 'object' else x)
+print(data.info())
+#b)
+sorted_by_city = data.sort_values('Fuel Consumption City (L/100km)', ascending=True)
+print(f'3 lowest fuel consumption cars in city: {sorted_by_city[['Make', 'Model', 'Fuel Consumption City (L/100km)']].head(3)}')
+print(f'3 highest fuel consumption cars in city:{sorted_by_city[['Make', 'Model', 'Fuel Consumption City (L/100km)']].tail(3)}')
+#c)
+print(f'Number of cars with an engine size between 2.5 and 3.5: {data[(data['Engine Size (L)'] >= 2.5) & (data['Engine Size (L)'] <= 3.5)]['Make'].count()}')
