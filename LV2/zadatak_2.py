@@ -6,17 +6,19 @@ data = np.delete(data, 0, 0)
 #a)
 print(f"Amount of data: {len(data)}")
 
-# #b)
-# plt.scatter(data[:,1], data[:,2], marker='.', color='red')
-# plt.xlabel("Visina")
-# plt.ylabel("Tezina")
-# plt.show()
+#b)
+plt.scatter(data[:,1], data[:,2], marker='x', color='green')
+plt.xlabel("Height")
+plt.ylabel("Weight")
+plt.title("Weigth-Heigth for every person")
+plt.show()
 
-# #c)
-# plt.scatter(data[::50, 1], data[::50, 2], marker='.', color='red')
-# plt.xlabel("Visina")
-# plt.ylabel("Tezina")
-# plt.show()
+#c)
+plt.scatter(data[::50, 1], data[::50, 2], marker='.', color='red')
+plt.xlabel("Visina")
+plt.ylabel("Tezina")
+plt.title("Weight-Height for every 50th person")
+plt.show()
 
 #d)
 print(f"Tallest person: {max(data[:,1])}")
@@ -24,8 +26,6 @@ print(f"Shortest person: {min(data[:,1])}")
 print(f"Average height: {np.mean(data[:,1])}")
 
 #e)
-# ind = (data[:,0] == 1)
-# print(ind)
 men = []
 women = []
 for i in range(len(data)):
