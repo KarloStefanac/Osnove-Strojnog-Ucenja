@@ -25,10 +25,11 @@ audis = data[data['Make'] == 'Audi']
 print(f"Number of Audi cars: {len(audis)}")
 print(f"Average C02 emission of Audi cars with 4 cylinders: {audis[audis['Cylinders'] == 4]['CO2 Emissions (g/km)'].mean():.2f} g/km")
 #e)
-cylinders = data.groupby('Cylinders')
+cylinders = data[data['Cylinders'] % 2 == 0].groupby('Cylinders')
 cylinders_mean = cylinders['CO2 Emissions (g/km)'].mean()
 cylinders_count = cylinders['Make'].count()
-print(pd.merge(cylinders_mean, cylinders_count, on='Cylinders').rename(columns={'CO2 Emissions (g/km)': 'Avg CO2 Emissions', 'Make': 'Number of cars'}))
+print(pd.merge(cylinders_mean, cylinders_count, on='Cylinders')
+      .rename(columns={'CO2 Emissions (g/km)': 'Avg CO2 Emissions', 'Make': 'Number of cars'}))
 #f)
 diesel = data[data['Fuel Type'] == 'D']
 petrol = data[data['Fuel Type'] == 'X']

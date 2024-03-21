@@ -32,5 +32,6 @@ cylinders_co2 = cylinders['CO2 Emissions (g/km)'].mean()
 
 plt.bar(fuel_type_count.keys(), fuel_type_count.values)
 plt.bar(cylinders_co2.keys(), cylinders_co2.values)
+plt.title("Fuel Type vs. Vehicle count and Cylinders vs. CO2 emissions")
 plt.legend()
 plt.show()
