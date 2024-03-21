@@ -19,11 +19,11 @@ print(f"3 highest fuel consumption cars in city:{sorted_by_city[['Make', 'Model'
 #c)
 engine_size = data[(data['Engine Size (L)'] >= 2.5) & (data['Engine Size (L)'] <= 3.5)]
 print(f"Number of cars with an engine size between 2.5 and 3.5: {engine_size['Make'].count()}")
-print(f"Average C02 emission of those cars: {engine_size['CO2 Emissions (g/km)'].mean()} g/km")
+print(f"Average C02 emission of those cars: {engine_size['CO2 Emissions (g/km)'].mean():.2f} g/km")
 #d)
 audis = data[data['Make'] == 'Audi']
 print(f"Number of Audi cars: {len(audis)}")
-print(f"Average C02 emission of Audi cars with 4 cylinders: {audis[audis['Cylinders'] == 4]['CO2 Emissions (g/km)'].mean()} g/km")
+print(f"Average C02 emission of Audi cars with 4 cylinders: {audis[audis['Cylinders'] == 4]['CO2 Emissions (g/km)'].mean():.2f} g/km")
 #e)
 cylinders = data.groupby('Cylinders')
 cylinders_mean = cylinders['CO2 Emissions (g/km)'].mean()
@@ -32,10 +32,10 @@ print(pd.merge(cylinders_mean, cylinders_count, on='Cylinders').rename(columns={
 #f)
 diesel = data[data['Fuel Type'] == 'D']
 petrol = data[data['Fuel Type'] == 'X']
-print(f"Diesel city consumption average: {diesel['Fuel Consumption City (L/100km)'].mean()} L/100km")
-print(f"Petrol city consumption average: {diesel['Fuel Consumption City (L/100km)'].mean()} L/100km")
-print(f"Diesel city consumption median: {diesel['Fuel Consumption City (L/100km)'].median()} L/100km")
-print(f"Petrol city consumption median: {petrol['Fuel Consumption City (L/100km)'].median()} L/100km")
+print(f"Diesel city consumption average: {diesel['Fuel Consumption City (L/100km)'].mean():.2f} L/100km")
+print(f"Petrol city consumption average: {diesel['Fuel Consumption City (L/100km)'].mean():.2f} L/100km")
+print(f"Diesel city consumption median: {diesel['Fuel Consumption City (L/100km)'].median():.2f} L/100km")
+print(f"Petrol city consumption median: {petrol['Fuel Consumption City (L/100km)'].median():.2f} L/100km")
 #g)
 four_cyl_diesel = diesel[diesel['Cylinders'] == 4]
 four_cyl_diesel = four_cyl_diesel.sort_values('Fuel Consumption City (L/100km)', ascending=False)
