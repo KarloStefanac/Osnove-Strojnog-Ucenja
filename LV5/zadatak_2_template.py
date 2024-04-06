@@ -1,9 +1,11 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+
 from matplotlib.colors import ListedColormap
 from sklearn.model_selection import train_test_split
-
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,ConfusionMatrixDisplay,classification_report,confusion_matrix
 labels= {0:'Adelie', 1:'Chinstrap', 2:'Gentoo'}
 
 def plot_decision_regions(X, y, classifier, resolution=0.02):
@@ -66,3 +68,33 @@ y = df[output_variable].to_numpy()
 # podjela train/test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123)
 
+#a)
+species, specie_counter = np.unique(y_train, return_counts = True)
+plt.figure()
+plt.bar(species, specie_counter)
+
+species, specie_counter = np.unique(y_test, return_counts = True)
+plt.figure()
+plt.bar(species, specie_counter)
+plt.show()
+
+#b)
+LogRegression_model = LogisticRegression()
+LogRegression_model.fit(X_train, y_train)
+
+#c)
+print(LogRegression_model.coef_)
+print(LogRegression_model.intercept_)
+
+#d)
+# plot_decision_regions(X_train, y_train, classifier = LogRegression_model)
+
+#e)
+y_test_p = LogRegression_model.predict(X_test)
+print("Tocnost", accuracy_score(y_test, y_test_p))
+cm = confusion_matrix(y_test, y_test_p)
+print("Matrica zabune: ", cm)
+disp = ConfusionMatrixDisplay(confusion_matrix(y_test, y_test_p))
+disp.plot()
+plt.show()
+print(classification_report(y_test, y_test_p))
