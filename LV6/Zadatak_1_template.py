@@ -61,7 +61,7 @@ def kNeighbours(X_train_n, y_train, X_test_n, y_test,k):
     # plt.show()
     
 def plotting(classifier,X_train_n, y_train, y_train_p, title):
-    plot_decision_regions(X_train_n, y_train, classifier=SVC_model)
+    plot_decision_regions(X_train_n, y_train, classifier=classifier)
     plt.xlabel('x_1')
     plt.ylabel('x_2')
     plt.legend(loc='upper left')
@@ -110,14 +110,14 @@ plt.title("Logisticka regresija. Tocnost: " + "{:0.3f}".format((accuracy_score(y
 plt.tight_layout()
 # plt.show()
 
-    # Izradite algoritam KNN na skupu podataka za uˇcenje (uz K=5). Izraˇcunajte toˇcnost
+    # Izradite algoritam KNN na skupu podataka za uˇcenje (uz K=5). Izracunajte tocnost
     # klasifikacije na skupu podataka za uˇcenje i skupu podataka za testiranje. Usporedite
     # dobivene rezultate s rezultatima logistiˇcke regresije. Što primje´cujete vezano uz dobivenu
     # granicu odluke KNN modela?
 
 # K=5
 kNeighbours(X_train_n, y_train, X_test_n, y_test,5)
-# Kako izgleda granica odluke kada je K = 1 i kada je K = 100?
+    # Kako izgleda granica odluke kada je K = 1 i kada je K = 100?
 #K=1
 kNeighbours(X_train_n, y_train, X_test_n, y_test,1)
 #K=1000
@@ -125,8 +125,8 @@ kNeighbours(X_train_n, y_train, X_test_n, y_test,100)
 plt.show()
 
 #6.5.2
-# Pomocu unakrsne validacije odredite optimalnu vrijednost hiperparametra K
-# algoritma KNN za podatke iz Zadatka 1.
+    # Pomocu unakrsne validacije odredite optimalnu vrijednost hiperparametra K
+    # algoritma KNN za podatke iz Zadatka 1.
 pipe = Pipeline([('scaler', StandardScaler()), ('knn', KNeighborsClassifier())])
 param_grid = {'knn__n_neighbors': np.arange(1, 50)}
 grid = GridSearchCV(pipe, param_grid, cv=10)
@@ -139,7 +139,7 @@ print("Tocnost na testnom skupu: ", grid.score(X_test, y_test))
     # Na podatke iz Zadatka 1 primijenite SVM model koji koristi RBF kernel funkciju
     # te prikažite dobivenu granicu odluke. Mijenjajte vrijednost hiperparametra C i γ. Kako promjena
     # ovih hiperparametara utjeˇce na granicu odluke te pogrešku na skupu podataka za testiranje?
-    # Mijenjajte tip kernela koji se koristi. Što primje´cujete?
+    # Mijenjajte tip kernela koji se koristi. Što primjecujete?
 
 # C=1,gamma=0.01
 SVC_model = svm.SVC(kernel='rbf', C=1, random_state=42, gamma=0.01)
@@ -148,8 +148,8 @@ print("----------------------------------------------\nRBF:")
 print(scores)
 SVC_model.fit(X_train_n, y_train)
 # Evaluacija modela SVC
-y_train_p_SVC = LogReg_model.predict(X_train_n)
-y_test_p_SVC = LogReg_model.predict(X_test_n)
+y_train_p_SVC = SVC_model.predict(X_train_n)
+y_test_p_SVC = SVC_model.predict(X_test_n)
 
 plotting(SVC_model,X_train_n, y_train, y_train_p_SVC, "RBF, C=1, gamma=0.01")
 
@@ -161,8 +161,8 @@ print("----------------------------------------------\nRBF:")
 print(scores)
 SVC_model.fit(X_train_n, y_train)
 # Evaluacija modela SVC
-y_train_p_SVC = LogReg_model.predict(X_train_n)
-y_test_p_SVC = LogReg_model.predict(X_test_n)
+y_train_p_SVC = SVC_model.predict(X_train_n)
+y_test_p_SVC = SVC_model.predict(X_test_n)
 
 plotting(SVC_model,X_train_n, y_train, y_train_p_SVC,"RBF, C=1, gamma=0.1")
 
@@ -175,8 +175,8 @@ print(scores)
 SVC_model.fit(X_train_n, y_train)
 
 # Evaluacija modela SVC
-y_train_p_SVC = LogReg_model.predict(X_train_n)
-y_test_p_SVC = LogReg_model.predict(X_test_n)
+y_train_p_SVC = SVC_model.predict(X_train_n)
+y_test_p_SVC = SVC_model.predict(X_test_n)
 
 plotting(SVC_model,X_train_n, y_train, y_train_p_SVC,"RBF, C=100, gamma=0.1")
 
@@ -184,7 +184,7 @@ plt.show()
 
 
 #6.5.4
-    # Pomo´cu unakrsne validacije odredite optimalnu vrijednost hiperparametra C i γ
+    # Pomocu unakrsne validacije odredite optimalnu vrijednost hiperparametra C i γ
     # algoritma SVM za problem iz Zadatka 1.
 pipe = Pipeline([('scaler', StandardScaler()), ('svm', svm.SVC(kernel='rbf'))])
 param_grid = {'svm__C': [0.1, 1, 10], 'svm__gamma': [0.1, 1, 10]}
