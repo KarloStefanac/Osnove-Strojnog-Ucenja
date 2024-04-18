@@ -4,7 +4,7 @@ import matplotlib.image as Image
 from sklearn.cluster import KMeans
 
 # ucitaj sliku
-img = Image.imread("imgs\\test_1.jpg")
+img = Image.imread("imgs/test_1.jpg")
 
 # prikazi originalnu sliku
 plt.figure()
@@ -22,3 +22,11 @@ img_array = np.reshape(img, (w*h, d))
 
 # rezultatna slika
 img_array_aprox = img_array.copy()
+
+# broj razlicitih boja u slici
+n_colors = len(np.unique(img_array, axis=0))
+print("Broj razlicitih boja u slici:",n_colors)
+km = KMeans(n_clusters=5)
+km = km.fit(img_array)
+labels = km.predict(img_array)
+print(img_array)
