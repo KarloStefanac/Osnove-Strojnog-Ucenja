@@ -2,6 +2,7 @@ import numpy as np
 from tensorflow import keras
 from keras import layers
 from matplotlib import pyplot as plt
+import matplotlib.image as mpimg
 from sklearn.metrics import confusion_matrix
 from keras import models
 import seaborn as sns
@@ -25,4 +26,3 @@ for i, idx in enumerate(misclassified_indices[:num_of_images]):
     plt.title(f"True: {y_test[idx]}, Predicted: {y_pred_classes[idx]}")
     plt.axis('off')
 plt.show()
-
