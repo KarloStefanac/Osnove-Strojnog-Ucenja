@@ -1,8 +1,8 @@
 import numpy as np
 from tensorflow import keras
-from tensorflow.keras import layers
-from tensorflow.keras.datasets import cifar10
-from tensorflow.keras.utils import to_categorical
+from keras import layers
+from keras.api.datasets import cifar10
+from keras.api.utils import to_categorical
 from matplotlib import pyplot as plt
 
 
@@ -24,8 +24,8 @@ X_train_n = X_train.astype('float32')/ 255.0
 X_test_n = X_test.astype('float32')/ 255.0
 
 # 1-od-K kodiranje
-y_train = to_categorical(y_train, dtype ="uint8")
-y_test = to_categorical(y_test, dtype ="uint8")
+y_train = to_categorical(y_train)
+y_test = to_categorical(y_test)
 
 # CNN mreza
 model = keras.Sequential()
