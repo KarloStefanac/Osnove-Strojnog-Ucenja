@@ -54,7 +54,7 @@ model.compile(optimizer='adam',
 
 model.fit(X_train_n,
             y_train,
-            epochs = 40,
+            epochs = 20,
             batch_size = 64,
             callbacks = my_callbacks,
             validation_split = 0.1)
